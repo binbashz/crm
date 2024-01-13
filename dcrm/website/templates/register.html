@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+
+    <h3 class="custom-title">Regístrate en CRM DashFlow</h3>
+    <br><br>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+    
+        .custom-title {
+          font-family: 'Orbitron', sans-serif;
+          text-align: center;
+          color: #0663a1;
+        }
+      </style>
+    <form method="POST" action="" class="custom-form">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error:</strong> Hubo un problema con tu formulario.
+                {% for field in form %}
+                    {% if field.errors %}
+                        {{ field.label_tag }}: {{ field.errors|striptags }}
+                    {% endif %}
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+
+        {{ form.non_field_errors }}
+
+        <div class="mb-3">
+            <label for="{{ form.username.id_for_label }}">Nombre de usuario</label>
+            <input type="text" name="{{ form.username.name }}" placeholder="Introduce tu nombre de usuario" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.email.id_for_label }}">Correo electrónico</label>
+            <input type="email" name="{{ form.email.name }}" placeholder="Introduce tu correo electrónico" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+            <input type="password" name="{{ form.password1.name }}" placeholder="Introduce tu contraseña" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.password2.id_for_label }}">Confirmar contraseña</label>
+            <input type="password" name="{{ form.password2.name }}" placeholder="Confirma tu contraseña" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</div>
+
+<style>
+   
+
+    .custom-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #333; /* Color del texto de las etiquetas */
+    }
+
+    .custom-form input {
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+    }
+
+    .custom-form button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        background-color: #4CAF50; /* Color de fondo verde para el botón */
+        color: white; /* Color del texto blanco para el botón */
+        border: none; /* Sin borde */
+    }
+
+    /* Estilos específicos para los placeholders */
+    .custom-form input::placeholder {
+        color: #999; /* Color del texto del placeholder */
+    }
+</style>
+
+{% endblock %}

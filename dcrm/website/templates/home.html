@@ -1,0 +1,118 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- Resto del contenido -->
+
+  {% if user.is_authenticated %}
+    <table class="table table-striped table-hover table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Address</th>
+          <th scope="col">City</th>
+          <th scope="col">State</th>
+          <th scope="col">Zipcode</th>
+          <th scope="col">Created At</th>
+          <th scope="col">ID</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+      {% if records %}
+        {% for record in records %}
+          <tr>
+            <td>{{ record.first_name }} {{ record.last_name }}</td>
+            <td>{{ record.email }}</td>
+            <td>{{ record.phone }}</td>
+            <td>{{ record.address }}</td>
+            <td>{{ record.city }}</td>
+            <td>{{ record.state }}</td>
+            <td>{{ record.zipcode }}</td>
+            <td>{{ record.created_at }}</td>
+            <td><a href="{% url 'record' record.id %}">{{ record.id }}</a></td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+      
+      </tbody>
+    </table>
+  {% else %}
+ 
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+    .custom-title {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      color: #0663a1;
+    }
+  </style>
+  <title>CRM DashFlow</title>
+</head>
+<body>
+  
+  <div class="col-md-6 offset-md-3">
+
+      <br><br><br><br><br>
+
+
+      <h3 class="custom-title">Bienvenido</h3>
+<p class="subtitulo">Iniciar</p>
+
+
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+    
+        .custom-title {
+          font-family: 'Orbitron', sans-serif;
+          text-align: center;
+          color: #0663a1;
+        }
+        .subtitulo {
+        color: #0663a1;
+        font-size: 25px;
+        text-align: center;  
+      }
+      .subtitulo {
+    /* Estilos para el subtítulo */
+    font-size: 24px;
+    color: #0663a1;
+    opacity: 0; 
+    transform: translateY(38px); 
+    animation: mostrarSubtitulo 0.5s ease 0.5s forwards; 
+}
+
+@keyframes mostrarSubtitulo {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+        
+      </style>
+     
+      <br/>
+
+      <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <input type="text" class="form-control" name="username" placeholder="Username" required>
+        </div><br/>
+        <div class="mb-3">
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-secondary">Iniciar</button>
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}
