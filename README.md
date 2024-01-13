@@ -46,3 +46,10 @@ This project is a Customer Relationship Management (CRM) system developed using 
 ## Contributions
 
 Contributions are welcome! If you encounter issues or have potential improvements, please open an issue or submit a pull request.
+
+
+![Capture](https://github.com/binbashz/crm/assets/124454895/28735c3f-9f39-431c-88b5-63711cd86c4d)
+![Capture2](https://github.com/binbashz/crm/assets/124454895/7e8dcc81-07aa-4820-836a-16f503c0ed09)
+
+
+
